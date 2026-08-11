@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown - 10 August 2028</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="small-title">
+      Coming soon
+    </div>
+
+    <h1>BacII 2028</h1>
+
+    <div class="date">
+      10 August 2028
+    </div>
+
+    <div class="countdown" id="countdown">
+
+      <div class="box">
+        <div class="number" id="days">0</div>
+        <div class="label">Days</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="hours">00</div>
+        <div class="label">Hours</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="minutes">00</div>
+        <div class="label">Minutes</div>
+      </div>
+
+      <div class="box">
+        <div class="number" id="seconds">00</div>
+        <div class="label">Seconds</div>
+      </div>
+
+    </div>
+
+    <div id="finished">
+      🎉 The Day Has Arrived!
+    </div>
+
+    <div class="footer">
+      Made by VuthReaksa
+    </div>
+
+  </div>
+
+  <script>
+    // ==========================================
+    // TARGET DATE
+    // 10 August 2028 at 00:00:00
+    // ==========================================
+
+    const targetDate = new Date("August 10, 2028 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // If countdown is finished
+      if (distance <= 0) {
+        document.getElementById("countdown").style.display = "none";
+        document.getElementById("finished").style.display = "block";
+        return;
+      }
+
+      // Calculate time
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    // Run immediately
+    updateCountdown();
+
+    // Update every second
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
